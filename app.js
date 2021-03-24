@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors")
-const tickets = require("./seeds/tickets/tickets.json")
+const { response } = require("express");
+const Ticket = require("./models/ticket")
 
 
 app.use(cors());
@@ -12,8 +13,16 @@ app.get("/", (request, response) => {
     response.send("API server")
 })
 
-app.get("/api/tickets",  (request, response) => {
-    response.send(tickets)
- })
+app.get("/api/tickets", async (request, response) => {
+    try {
+        const allTickets = await Ticket.find({});
+        response.json(allTickets)
+    } catch (e) {
+        response.json({error: e})
+    }
+})
+// app.get("/api/tickets",  (request, response) => {
+//     response.send(tickets)
+//  })
 
 module.exports = app;
