@@ -43,10 +43,39 @@ app.get("/api/tickets", async (request, response) => {
     }
 })
 
-// app.patch("/api/tickets/:ticketId", (request, response) => {
-//     const {id} = request.params.id;
-//     response.send(id)
-// })
+app.patch("/api/tickets/:ticketId/done", async (request, response) => {
+    const id = request.params.ticketId;
+    let ticket = await Ticket.findOne({_id:id});
+    ticket = ticket.done;
+    ticket = true
+    console.log(ticket)
 
+    await Ticket.updateOne({_id: id, done: ticket},function (err, result){
+        if (err) {
+            response.status(404).send(err);
+          } else {
+              console.log(2)
+            response.status(200).json({updated: true})  
+        }
+    })
+    //  response.json(await Ticket.findById({_id:id}))
+})
 
+app.patch("/api/tickets/:ticketId/undone", async (request, response) => {
+    const id = request.params.ticketId;
+    let ticket = await Ticket.findOne({_id:id});
+    ticket = ticket.done;
+    ticket = false
+    console.log(ticket)
+
+    await Ticket.updateOne({_id: id, done: ticket},function (err, result){
+        if (err) {
+            response.status(404).send(err);
+          } else {
+              console.log(2)
+            response.status(200).json({updated: true})  
+        }
+    })
+    //  response.json(await Ticket.findById({_id:id}))
+})
 module.exports = app;
