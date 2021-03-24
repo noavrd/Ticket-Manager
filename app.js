@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const cors = require("cors")
-const { response } = require("express");
 const Ticket = require("./models/ticket")
 
 
@@ -20,7 +19,7 @@ app.get("/api/tickets", async (request, response) => {
         //all tickets
         if (searchText === undefined) {
             const allTickets = await Ticket.find({});
-            response.status(200).json(allTickets)
+            response.status(200).send(allTickets)
             return;
         }
 
