@@ -15,14 +15,38 @@ app.get("/", (request, response) => {
 
 app.get("/api/tickets", async (request, response) => {
     try {
-        const allTickets = await Ticket.find({});
-        response.json(allTickets)
+        const searchText = request.query.searchText;
+
+        //all tickets
+        if (searchText === undefined) {
+            const allTickets = await Ticket.find({});
+            response.status(200).json(allTickets)
+            return;
+        }
+
+        //tickets by search
+        if (searchText.toLowerCase()) {
+            const expectedTicket = await Ticket.find({
+                title:{$regex: searchText.toLowerCase(), $options: "i" }
+            });
+
+            //tickets not found in search
+            if (expectedTicket.length === 0) {
+                response.status(404).send("No such title")
+                return;
+            }
+            response.status(200).json(expectedTicket);
+            return;
+        }
     } catch (e) {
-        response.json({error: e})
+        response.status(500).json({error: e})
     }
 })
-// app.get("/api/tickets",  (request, response) => {
-//     response.send(tickets)
-//  })
+
+// app.patch("/api/tickets/:ticketId", (request, response) => {
+//     const {id} = request.params.id;
+//     response.send(id)
+// })
+
 
 module.exports = app;
