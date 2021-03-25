@@ -1,6 +1,6 @@
 const Mongoose = require("mongoose");
 
-const ticketsSchema = Mongoose.Schema({
+const ticketsSchema = new Mongoose.Schema({
     "title": {type: String, require: true},
     "content": {type: String, require: true},
     "userEmail": {type:String, require: true},

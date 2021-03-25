@@ -17,7 +17,7 @@ app.get("/api/tickets", async (request, response) => {
         const searchText = request.query.searchText;
 
         //all tickets
-        if (searchText === undefined) {
+        if (!searchText) {
             const allTickets = await Ticket.find({});
             response.status(200).send(allTickets)
             return;

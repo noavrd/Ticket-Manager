@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Ticket from "./Ticket";
+import AllTickets from "./AllTickets.js";
+const BASE_URL = "/api";
 
 function Main() {
-    const [ticketsArray, setTicketsArray] = useState([]);
-    useEffect(() => {
-       axios.get(`/api/tickets`).then((response) => {
+  const [ticketsArray, setTicketsArray] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/tickets`)
+      .then((response) => {
         setTicketsArray(response.data);
-       }).catch((err) => {
-           console.log(err);
-       })
-    }, []) 
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
     //put something in [] when i want a state to update
 
-    return(
-        <div>
-            {/* <AllTickets
-            tickets={ticketsArray}
-            /> */}
-            {ticketsArray.map((obj, index) => <Ticket key={index} ticket={obj}/>)}
-        </div>
-    )
+  return (
+    <div>
+      <AllTickets tickets={ticketsArray} />
+    </div>
+  );
 }
+
 export default Main;
