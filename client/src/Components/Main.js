@@ -5,24 +5,17 @@ import Search from "./Search.js";
 const BASE_URL = "/api";
 
 function Main() {
-  const [ticketsArray, setTicketsArray] = useState([]);
 
-//   useEffect(() => {
-//     axios
-//       .get(`${BASE_URL}/tickets`)
-//       .then((response) => {
-//         setTicketsArray(response.data);
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-//   }, []);
-    //put something in [] when i want a state to update
+  const [counter, setCounter] = useState(0);
+  function count () {
+
+  }
+  
 
   return (
     <div>
-        <Search/>
-        {/* <AllTickets tickets={ticketsArray} /> */}
+      <h1>Counter {counter}</h1>
+        <Search />
     </div>
   );
 }
