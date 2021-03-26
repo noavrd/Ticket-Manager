@@ -5,6 +5,7 @@ function AllTickets(props) {
   const [hiddenTickets, setHiddenTickets] = useState([]);
   const [counter, setCounter] = useState(0);
 
+  //hide tickets
   function hideTicket(index) {
     if ( hiddenTickets.includes(index) ) {
       return;
@@ -13,6 +14,7 @@ function AllTickets(props) {
     setCounter(counter + 1)
   }
 
+  //restore all tickets
   function restore() {
     setHiddenTickets([]);
     setCounter(0);

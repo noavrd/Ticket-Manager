@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 function Ticket(props) {
 
+    //show fixed date
     function fixedDate(num) {
         const date = new Date(num);
         const amOrPm = date.getHours() < 12 ? "AM" : "PM";

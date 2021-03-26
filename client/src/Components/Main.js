@@ -1,15 +1,44 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AllTickets from "./AllTickets.js";
-import Search from "./Search.js";
+
 const BASE_URL = "/api";
 
 function Main() {
+  const [ticketsArray, setTicketsArray] = useState([]);
 
+  //search by title
+  async function search(inputValue) {
+    setTicketsArray([]);
+    const response = await axios.get(
+      `${BASE_URL}/tickets?searchText=${inputValue}`
+    );
+    try {
+      setTicketsArray(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  //call all the tickets on load
+  useEffect(() => {
+    axios
+      .get(`${BASE_URL}/tickets`)
+      .then((response) => {
+        setTicketsArray(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div>
-        <Search/>
+      <input
+        id="searchInput"
+        onChange={(event) => search(event.target.value)}
+      ></input>
+      <AllTickets tickets={ticketsArray} />
     </div>
   );
 }
