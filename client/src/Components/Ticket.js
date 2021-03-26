@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 
 function Ticket(props) {
-    console.log(props.allTickets)
-    function hide(value) {
-        console.log(value)
-    }
 
     function fixedDate(num) {
         const date = new Date(num);
@@ -16,7 +12,7 @@ function Ticket(props) {
     
     return(
         <ul className="ticket">
-            <button className="hideTicketButton" onClick={(event) => hide(event.target)}>Hide</button>
+            <button className="hideTicketButton" onClick={props.hideTicket}>Hide</button>
             <li className="title">{props.ticket.title}</li>
             <li className="id">{props.ticket._id}</li>
             <li className="content">{props.ticket.content}</li>
