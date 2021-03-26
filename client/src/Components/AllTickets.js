@@ -4,9 +4,7 @@ import Ticket from "./Ticket";
 function AllTickets(props) {
   const [hiddenTickets, setHiddenTickets] = useState([]);
   const [counter, setCounter] = useState(0);
-  const [restore, setRestore] = useState([])
 
-  console.log(restore)
   function hideTicket(index) {
     if ( hiddenTickets.includes(index) ) {
       return;
@@ -16,12 +14,14 @@ function AllTickets(props) {
   }
 
   function restore() {
-    
+    setHiddenTickets([]);
+    setCounter(0);
   }
+ 
   return (
     <div className="tickets">
       <h1 id="hideTicketsCounter">{counter}</h1>
-      <button id="restoreHideTickets">Restore</button>
+      <button id="restoreHideTickets" onClick={restore}>Restore</button>
       {props.tickets.map((obj, index) => (
         hiddenTickets.includes(index)
         ? null
