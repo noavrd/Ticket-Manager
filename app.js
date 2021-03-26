@@ -73,4 +73,26 @@ app.patch("/api/tickets/:ticketId/undone", async (request, response) => {
         }
     })
 })
+
+// app.post("/api/tickets", async (request, response) => {
+//     const body = request.body;
+//     date = new Date();
+//     try {
+
+//     Ticket.create({
+//            "title": body.title,
+//            "content": body.content,
+//            "userEmail": body.userEmail,
+//            "done": false,
+//            "creationTime": Date.parse(date),
+//            "labels": body.labels 
+//        })
+//        console.log(body)
+//        response.send(body)
+//     }   
+//     catch {
+//         response.send("Fill all the the form")
+//     }
+// })
+
 module.exports = app;
