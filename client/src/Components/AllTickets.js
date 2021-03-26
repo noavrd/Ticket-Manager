@@ -22,7 +22,7 @@ function AllTickets(props) {
  
   return (
     <div className="tickets">
-      <h1 id="hideTicketsCounter">{counter}</h1>
+      <h1 id="hideTicketsCounter">{counter ? counter : ""}</h1>
       <button id="restoreHideTickets" onClick={restore}>Restore</button>
       {props.tickets.map((obj, index) => (
         hiddenTickets.includes(index)

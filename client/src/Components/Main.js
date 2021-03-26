@@ -5,6 +5,7 @@ import AllTickets from "./AllTickets.js";
 const BASE_URL = "/api";
 
 function Main() {
+  
   const [ticketsArray, setTicketsArray] = useState([]);
   const [error, setError] = useState("");
   const [titleError, setTitleError] = useState("");
@@ -39,6 +40,7 @@ function Main() {
 
       });
   }, []);
+  
 
   //server error display
   if (error !== "") {
