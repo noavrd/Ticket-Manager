@@ -45,33 +45,47 @@ app.get("/api/tickets", async (request, response) => {
 //patch request to make done = true
 app.patch("/api/tickets/:ticketId/done", async (request, response) => {
     const id = request.params.ticketId;
-    let ticket = await Ticket.findOne({_id:id});
-    ticket = ticket.done;
-    ticket = true
+    let ticket;
+    console.log(1)
+    try {
+        console.log(2)
+        ticket="not found"
 
-    await Ticket.updateOne({_id: id, done: ticket},function (err, result){
-        if (err) {
-            response.status(404).send(err);
-          } else {
-              response.status(200).json({updated: true})  
-        }
-    })
+        ticket = await Ticket.findByIdAndUpdate(id, {done: true}, {new: true});
+            response.status(200).json({updated: true})
+        
+       } catch (err) {
+           if(ticket === "not found") {
+            response.status(404).send("Ticket not found") 
+           } else {
+               response.status(500).send(err);
+           }
+
+    }
+
 })
 
 //patch request to make done = false
 app.patch("/api/tickets/:ticketId/undone", async (request, response) => {
     const id = request.params.ticketId;
-    let ticket = await Ticket.findOne({_id:id});
-    ticket = ticket.done;
-    ticket = false
+    let ticket;
+    console.log(1)
+    try {
+        console.log(2)
+        ticket="not found"
 
-    await Ticket.updateOne({_id: id, done: ticket},function (err, result){
-        if (err) {
-            response.status(404).send(err);
-          } else {
-              response.status(200).json({updated: true})  
-        }
-    })
+        ticket = await Ticket.findByIdAndUpdate(id, {done: false}, {new: true});
+            response.status(200).json({updated: true})
+        
+       } catch (err) {
+           if(ticket === "not found") {
+            response.status(404).send("Ticket not found") 
+           } else {
+               response.status(500).send(err);
+           }
+
+    }
+
 })
 
 // app.post("/api/tickets", async (request, response) => {

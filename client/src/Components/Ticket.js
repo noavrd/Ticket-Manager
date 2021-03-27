@@ -1,8 +1,10 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import Slice from "./Slice";
 
 function Ticket(props) {
 
+  const [checkDone, setCheckDone] = useState(props.ticket.done);
     //show fixed date
     function fixedDate(num) {
         const date = new Date(num);
@@ -11,7 +13,20 @@ function Ticket(props) {
           date.getMonth() + 1
         }/${date.getDate()}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} ${amOrPm}`;
       }
-    
+
+      function isDone(check) {
+        console.log(1)
+        const done = check ? "done" : "undone";
+        console.log(props.ticket._id)
+
+        axios.patch(`/api/tickets/${props.ticket._id}/${done}`)
+        .then((response) => {
+          console.log(response.data)
+          if(response.data.updated) {
+            setCheckDone(check)
+          }
+        })
+      }
     return(
         <div className="ticket">
           <br/>
@@ -23,7 +38,12 @@ function Ticket(props) {
             <div className="labels">
                 {props.ticket.labels?.map((label, index) => <div className={`label ${label}`} key={index}>{label}  </div>)}
             </div>
-            <div className="done">Done: {props.ticket.done === undefined ?  "" : props.ticket.done.toString()}</div>
+            <div className="done">
+              Done
+                <button type="checkbox" name="done" onClick={() => isDone(!checkDone)}>{checkDone ? "✔ done" : "not done"}</button>
+            {/* </div> */}
+            </div>
+            {/* <div className="done">Done: {props.ticket.done === undefined ?  "" : props.ticket.done.toString()}</div> */}
         </div>
         )
 }
