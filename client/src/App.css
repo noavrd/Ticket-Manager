@@ -1,38 +1,168 @@
-.App {
+body {
   text-align: center;
+   background-image: url("./3.jpg");
+   
+}
+* {
+  font-family: 'Nunito', sans-serif;
+}
+h1 {
+  font-family: 'Lobster Two', cursive;
+  font-size: 9vh;
+}
+.ticket {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: 0.3s;
+  border-radius: 15px;
+  background-color: white;
+  margin: 0 7vw;
+  margin-top: 8vh;
+  opacity: 0.82;  
+  transition: 1s;
+
+}
+.tickets :hover {
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.19), 0 10px 6px rgba(0, 0, 0, 0.23);
+  opacity: 1;  
+}
+.ticket :hover {
+  box-shadow: none;
+}
+.counter:hover {
+  box-shadow: none;
+}
+li {
+   list-style: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+   font-size: 3.5vh;
+}
+.content {
+  padding: 0 2vw;
+}
+.errorTitle{
+  font-size: 4vh;
+}
+input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid black;
+  width: 20vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.fa {
+  padding-right: 1vw;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+input:focus {
+  outline: none;
+
+}
+#restoreHideTickets{
+  cursor: pointer;
+  box-shadow: none;
+
+}
+
+.ticketDone {
+  transition: 1s;
+  background-color: #dfe1fe;
+  text-decoration: line-through;
+}
+.moreLess {
+  cursor: pointer;
+  color: blue;
+}
+.checkbox, .checkbox .container {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.checkbox {
+  padding-left: 40vw;
+
+}
+.checkbox .checkmark {
+  position: absolute;
+  display: none;
+}
+.checkbox input:checked~.checkmark {
+  display: inline;
+}
+.checkmark {
+  padding-left: 0.2vw;
+}
+.container {
+  padding-left: 0.5vw;
+}
+.checkbox input[type="checkbox" i] {
+  all: unset;
+  display: inline-block;
+  position: absolute;
+  width: 1.2em;
+  height: 1.2em;
+  border: 1px solid grey;
+}
+.checkbox .container:hover {
+  cursor: pointer;
+}
+input[type="checkbox" i] {
+  background-color: initial;
+  cursor: default;
+  appearance: auto;
+  box-sizing: border-box;
+  margin: 3px 3px 3px 4px;
+  padding: initial;
+  border: initial;
 }
 
-.App-link {
-  color: #61dafb;
+.hideTicketButton{
+  cursor: pointer;
+  color:indianred;
+  text-justify: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Corvid {
+  color: blue;
+  border-bottom: 0.5px solid blue;
+} 
+
+.Api {
+  color:crimson;
+  border-bottom: 0.5px solid crimson;
+}
+
+.Guidelines {
+  color:darkseagreen;
+  border-bottom: 0.5px solid darkseagreen;
+}
+
+.Collapse {
+  color:lightsalmon;
+  border-bottom: 0.5px solid lightsalmon;
+}
+
+.Expand{
+  color:purple;
+  border-bottom: 0.5px solid purple;
+}
+
+.Login {
+  color:teal;
+  border-bottom: 0.5px solid teal;
+}
+
+.Problem {
+  color:gold;
+  border-bottom: 0.5px solid gold;
+}
+
+.Tutorial {
+  color:peru;
+  border-bottom: 0.5px solid peru;
+}
+
+.Count {
+  color:red;
+  border-bottom: 0.5px solid red;
 }
