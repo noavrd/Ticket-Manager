@@ -46,9 +46,7 @@ app.get("/api/tickets", async (request, response) => {
 app.patch("/api/tickets/:ticketId/done", async (request, response) => {
     const id = request.params.ticketId;
     let ticket;
-    console.log(1)
     try {
-        console.log(2)
         ticket="not found"
 
         ticket = await Ticket.findByIdAndUpdate(id, {done: true}, {new: true});
@@ -69,9 +67,7 @@ app.patch("/api/tickets/:ticketId/done", async (request, response) => {
 app.patch("/api/tickets/:ticketId/undone", async (request, response) => {
     const id = request.params.ticketId;
     let ticket;
-    console.log(1)
     try {
-        console.log(2)
         ticket="not found"
 
         ticket = await Ticket.findByIdAndUpdate(id, {done: false}, {new: true});

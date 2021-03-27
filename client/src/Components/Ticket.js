@@ -14,6 +14,7 @@ function Ticket(props) {
         }/${date.getDate()}/${date.getFullYear()}, ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} ${amOrPm}`;
       }
 
+      //mark tocket as done / undone
       function isDone(check) {
         console.log(1)
         const done = check ? "done" : "undone";
@@ -28,7 +29,7 @@ function Ticket(props) {
         })
       }
     return(
-        <div className="ticket">
+        <div className={checkDone ? "ticket ticketDone" : "ticket"}>
           <br/>
             <span className="hideTicketButton" onClick={props.hideTicket}>Hide</span>
             <div className="title">{props.ticket.title}</div>
@@ -38,11 +39,17 @@ function Ticket(props) {
             <div className="labels">
                 {props.ticket.labels?.map((label, index) => <div className={`label ${label}`} key={index}>{label}  </div>)}
             </div>
-            <div className="done">
-              Done
-                <button type="checkbox" name="done" onClick={() => isDone(!checkDone)}>{checkDone ? "✔ done" : "not done"}</button>
-            {/* </div> */}
+            <div className="checkbox">
+            Done 
+              <div className="container" onClick={() => isDone(!checkDone)}>
+                  <input type="checkbox" className="done" checked={checkDone}/>
+                  <span className="checkmark">✔</span>
+              </div>
             </div>
+            {/* <div className="done">Done</div>
+            <input type="checkbox" className="check" name="done" onClick={() => isDone(!checkDone)}></input> */}
+                {/* <span className="mark">{checkDone ? "✔" : ""}</span> */}
+            {/* </div> */}
             {/* <div className="done">Done: {props.ticket.done === undefined ?  "" : props.ticket.done.toString()}</div> */}
         </div>
         )
