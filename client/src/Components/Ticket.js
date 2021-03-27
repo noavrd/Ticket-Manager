@@ -16,13 +16,10 @@ function Ticket(props) {
 
       //mark tocket as done / undone
       function isDone(check) {
-        console.log(1)
         const done = check ? "done" : "undone";
-        console.log(props.ticket._id)
 
         axios.patch(`/api/tickets/${props.ticket._id}/${done}`)
         .then((response) => {
-          console.log(response.data)
           if(response.data.updated) {
             setCheckDone(check)
           }
@@ -46,11 +43,6 @@ function Ticket(props) {
                   <span className="checkmark">✔</span>
               </div>
             </div>
-            {/* <div className="done">Done</div>
-            <input type="checkbox" className="check" name="done" onClick={() => isDone(!checkDone)}></input> */}
-                {/* <span className="mark">{checkDone ? "✔" : ""}</span> */}
-            {/* </div> */}
-            {/* <div className="done">Done: {props.ticket.done === undefined ?  "" : props.ticket.done.toString()}</div> */}
         </div>
         )
 }
