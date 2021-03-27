@@ -23,7 +23,7 @@ function Ticket(props) {
             <div className="labels">
                 {props.ticket.labels?.map((label, index) => <div className={`label ${label}`} key={index}>{label}  </div>)}
             </div>
-            <div className="done">{props.ticket.done === undefined ?  "" : props.ticket.done.toString()}</div>
+            <div className="done">Done: {props.ticket.done === undefined ?  "" : props.ticket.done.toString()}</div>
         </div>
         )
 }
