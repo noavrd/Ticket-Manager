@@ -22,8 +22,12 @@ function AllTickets(props) {
  
   return (
     <div className="tickets">
-      <h1 id="hideTicketsCounter">{counter ? counter : ""}</h1>
-      <button id="restoreHideTickets" onClick={restore}>Restore</button>
+      <br/>
+      <span className="counter">{counter ? "Hidden cards: " : ""}</span>
+      <span id="hideTicketsCounter" className="counter">{counter ? counter : ""}</span>
+      <br/>
+      <span id="restoreHideTickets" onClick={restore}>{counter ? "Restore" : ""}</span>
+
       {props.tickets.map((obj, index) => (
         hiddenTickets.includes(index)
         ? null

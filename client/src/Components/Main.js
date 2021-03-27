@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AllTickets from "./AllTickets.js";
+import logo from "./logo.png"
 
 const BASE_URL = "/api";
 
@@ -20,7 +21,7 @@ function Main() {
       setTitleError("");
 
     }).catch((err) => {
-      setTitleError("no title found");
+      setTitleError("We coudl'nt find the title");
       console.log(err);
     })
   }
@@ -35,7 +36,7 @@ function Main() {
 
       })
       .catch((err) => {
-        setError("server problem please try again");
+        setError("server problem");
         console.log(err);
 
       });
@@ -44,28 +45,43 @@ function Main() {
 
   //server error display
   if (error !== "") {
-    return <div className="serverError">{error}</div>
+    return (
+      <div>
+        <div className="serverError errorTitle">{error}</div>
+        <div className="serverError errorTitle">Please try again</div>
+
+        <img src={logo}></img>
+      </div>
+
+    ) 
   }
 
   //title not found display
   if (titleError !== "") {
     return(
       <div>
-      <input
+        <span className="fa fa-search">  </span>
+        <input
         id="searchInput"
-        onChange={(event) => search(event.target.value)}
-      ></input>
-      <div>{titleError}</div>
+        onChange={(event) => search(event.target.value)}>
+        </input>
+        <br/><br/>
+        <div className="errorTitle">{titleError}</div>
+        <div className="errorTitle">Try something else...</div>
+        <img src={logo}></img>
       </div>
     ) 
   }
 
   return (
     <div>
+      <span className="fa fa-search"></span>
       <input
-        id="searchInput"
-        onChange={(event) => search(event.target.value)}
-      ></input>
+      id="searchInput"
+      onChange={(event) => search(event.target.value)}
+      placeholder="Search..."
+      >
+      </input>
       <AllTickets tickets={ticketsArray} />
     </div>
   );

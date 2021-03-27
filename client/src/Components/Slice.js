@@ -14,17 +14,17 @@ function Slice(props) {
             {text}
             <span>...</span>
           </p>
-          <button className="moreLess" onClick={() => setIsSliced(!isSliced)}>
+          <span className="moreLess" onClick={() => setIsSliced(!isSliced)}>
             See more...
-          </button>
+          </span>
         </div>
       ) : (
         <div>
           <p>{text}</p>
           {!(props.content.length <= props.maxChar) && (
-            <button className="moreLess" onClick={() => setIsSliced(!isSliced)}>
+            <span className="moreLess" onClick={() => setIsSliced(!isSliced)}>
               See less...
-            </button>
+            </span>
           )}
         </div>
       )}

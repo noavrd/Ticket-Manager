@@ -13,18 +13,18 @@ function Ticket(props) {
       }
     
     return(
-        <ul className="ticket">
-            <button className="hideTicketButton" onClick={props.hideTicket}>Hide</button>
-            <li className="title">{props.ticket.title}</li>
-            <li className="id">{props.ticket._id}</li>
-            <li className="content"> {""}<Slice content={props.ticket.content === undefined ? "" : props.ticket.content} maxChar="300"/></li>
-            <li className="userEmail">{props.ticket.userEmail}</li>
-            <li className="creationTime">{fixedDate(props.ticket.creationTime)}</li>
-            <li className="labels">
-                {props.ticket.labels?.map((label, index) => <div className={`label ${label}`} key={index}>{label}</div>)}
-            </li>
-            <li className="done">{props.ticket.done === undefined ?  "" : props.ticket.done.toString()}</li>
-        </ul>
+        <div className="ticket">
+          <br/>
+            <span className="hideTicketButton" onClick={props.hideTicket}>Hide</span>
+            <div className="title">{props.ticket.title}</div>
+            <div className="content"> {""}<Slice content={props.ticket.content === undefined ? "" : props.ticket.content} maxChar="300"/></div>
+            <div className="userEmail">Email: {props.ticket.userEmail}</div>
+            <div className="creationTime">Created at: {fixedDate(props.ticket.creationTime)}</div>
+            <div className="labels">
+                {props.ticket.labels?.map((label, index) => <div className={`label ${label}`} key={index}>{label}  </div>)}
+            </div>
+            <div className="done">{props.ticket.done === undefined ?  "" : props.ticket.done.toString()}</div>
+        </div>
         )
 }
 
